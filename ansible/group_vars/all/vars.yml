@@ -1,0 +1,6 @@
+zerobyte_timezone: "Europe/Zurich"
+zerobyte_base_url: "http://localhost:4096"
+zerobyte_image: "ghcr.io/nicotsx/zerobyte:v0.35"
+zerobyte_deploy_dir: "/home/lennon/zerobyte"
+zerobyte_backup_home: "/home/lennon"
+zerobyte_backup_etc: "/etc"

@@ -1,0 +1,28 @@
+---
+- name: Deploy Zerobyte
+  hosts: zerobyte
+  become: true
+
+  tasks:
+    - name: Ensure deploy directory exists
+      ansible.builtin.file:
+        path: "{{ zerobyte_deploy_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Template compose.yml
+      ansible.builtin.template:
+        src: compose.yml.j2
+        dest: "{{ zerobyte_deploy_dir }}/compose.yml"
+        mode: "0640"
+
+    - name: Pull latest image
+      community.docker.docker_image:
+        name: "{{ zerobyte_image }}"
+        source: pull
+
+    - name: Deploy with Docker Compose
+      community.docker.docker_compose_v2:
+        project_src: "{{ zerobyte_deploy_dir }}"
+        state: present
+        pull: policy

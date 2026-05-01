@@ -1,0 +1,20 @@
+services:
+  zerobyte:
+    image: {{ zerobyte_image }}
+    container_name: zerobyte
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "4096:4096"
+    devices:
+      - /dev/fuse:/dev/fuse
+    environment:
+      - TZ={{ zerobyte_timezone }}
+      - BASE_URL={{ zerobyte_base_url }}
+      - APP_SECRET={{ vault_app_secret }}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - {{ zerobyte_deploy_dir }}:/var/lib/zerobyte
+      - {{ zerobyte_backup_home }}:/backup/home
+      - {{ zerobyte_backup_etc }}:/backup/etc
