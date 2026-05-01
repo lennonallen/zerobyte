@@ -16,11 +16,6 @@
         dest: "{{ zerobyte_deploy_dir }}/compose.yml"
         mode: "0640"
 
-    - name: Pull latest image
-      community.docker.docker_image:
-        name: "{{ zerobyte_image }}"
-        source: pull
-
     - name: Deploy with Docker Compose
       community.docker.docker_compose_v2:
         project_src: "{{ zerobyte_deploy_dir }}"
