@@ -1,7 +1,6 @@
 ---
 - name: Deploy Zerobyte
   hosts: localhost
-  become: true
 
   tasks:
     - name: Ensure deploy directory exists
