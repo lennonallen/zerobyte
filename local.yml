@@ -1,6 +1,6 @@
 ---
 - name: Deploy Zerobyte
-  hosts: zerobyte
+  hosts: localhost
   become: true
 
   tasks:
